@@ -5,7 +5,7 @@ class nifi::params {
   $mirror_url     = 'http://apache.rediris.es'
   $install_dir    = '/opt/nifi'
   $download_dir   = '/var/tmp/nifi'
-  $log_dir        = '/opt/log/nifi'
+  $log_dir        = '/var/log/nifi'
   $pid_dir        = '/var/run/nifi'
 
   $nifi_user      = 'nifi'
