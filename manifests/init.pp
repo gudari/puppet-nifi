@@ -56,6 +56,10 @@ class nifi (
   $pid_dir        = $nifi::params::pid_dir,
   $config_dir     = "${install_dir}/conf",
 
+  $service_install = $nifi::params::service_install,
+  $service_name    = $nifi::params::service_name,
+  $service_ensure  = $nifi::params::service_ensure,
+
   $nifi_group     = $nifi::params::nifi_group,
   $nifi_gid       = $nifi::params::nifi_gid,
   $nifi_user      = $nifi::params::nifi_user,
