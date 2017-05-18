@@ -42,7 +42,47 @@
 #
 # Copyright 2017 Your name here, unless otherwise noted.
 #
-class nifi {
+class nifi (
+
+  $version      = $nifi::params::version,
+
+  $install_dir  = $nifi::params::install_dir,
+  $extract_dir  = $nifi::params::extract_dir,
+  $download_dir = $nifi::params::download_dir,
+  $mirror_url   = $nifi::params::mirror_url,
+  $basefilename = "nifi -${version}-bin.tar.gz",
+  $package_url  = "${mirror_url}/nifi/${version}/${basefilename}",
+  $log_dir      = $nifi::params::log_dir,
+  $pid_dir      = $nifi::params::pid_dir,
+  $config_dir   = "${install_dir}/conf",
+
+  $nifi_group  = $nifi::params::nifi_group,
+  $nifi_gid    = $nifi::params::nifi_gid,
+  $nifi_user   = $nifi::params::nifi_user,
+  $nifi_uid    = $nifi::params::nifi_uid,
+
+) inherits nifi::params {
+
+  group { $nifi_group:
+    ensure => present,
+    gid    => $nifi_gid,
+  }
+
+  user { $nifi_user:
+    ensure  => present,
+    uid     => $nifi_uid,
+    groups  => $nifi_group,
+    require => Group[ $nifi_group ],
+  }
+
+  anchor { '::nifi::start': } ->
+  class { '::nifi::install': } ->
+  anchor { '::nifi::end': }
+}
+
+
+
+
 
 
 }
