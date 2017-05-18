@@ -65,7 +65,7 @@ class nifi::install {
     group   => $nifi::nifi_group,
     require => [
       Group[ $nifi::nifi_group ],
-      File[ $nifi::nifi_user ],
+      User[ $nifi::nifi_user ],
       Archive[ "${nifi::download_dir}/${nifi::basefilename}" ],
     ],
   }
