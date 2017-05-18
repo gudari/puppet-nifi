@@ -7,14 +7,13 @@ Type=simple
 PermissionsStartOnly=true
 User=<%= scope.lookupvar('nifi::nifi_user') %>
 Group=<%= scope.lookupvar('nifi::nifi_group') %>
-Environment='NIFI_PID_DIR=<%= scope.lookupvar('nifi::pid_dir') %>
-Environment='NIFI_LOG_DIR=<%= scope.lookupvar('nifi::log_dir') %>
-Environment='BOOTSTRAP_CONF=<%= scope.lookupvar('nifi::config_dir') %>
+Environment='NIFI_PID_DIR=<%= scope.lookupvar('nifi::pid_dir') %>'
+Environment='NIFI_LOG_DIR=<%= scope.lookupvar('nifi::log_dir') %>'
+Environment='BOOTSTRAP_CONF=<%= scope.lookupvar('nifi::config_dir') %>'
 ExecStartPre=/bin/mkdir -p <%= scope.lookupvar('nifi::pid_dir') %>
 ExecstartPre=/bin/chown -R <%= scope.lookupvar('nifi::nifi_user') %>:<%= scope.lookupvar('nifi::nifi_group') %> <%= scope.lookupvar('nifi::pid_dir') %>
 SyslogIdentifier=<%= scope.lookupvar('nifi::service_name') %>
-ExecStart=<%= scope.lookupvar('nifi::install_dir') %>/bin/nifi.sh start
-ExecStop=<%= scope.lookupvar('nifi::install_dir') %>/bin/nifi.sh stop
+ExecStart=<%= scope.lookupvar('nifi::install_dir') %>/bin/nifi.sh run
 PIDFile=<%= scope.lookupvar('nifi::pid_dir') %>/nifi.pid
 
 LimitNOFILE=65536
