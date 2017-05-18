@@ -80,7 +80,8 @@ class nifi (
 
   anchor { '::nifi::start': } ->
   class { '::nifi::install': } ->
-  class { '::nifi::config': } ->
+  class { '::nifi::config': } ~>
+  class { 'nifi::service': } ->
   anchor { '::nifi::end': }
 }
 

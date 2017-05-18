@@ -5,6 +5,7 @@ class nifi::config {
     owner   => $nifi::nifi_user,
     group   => $nifi::nifi_group,
     content => file('nifi/config/authorizers.xml'),
+    require => File[ $nifi::config_dir ],
   }
 
   file { "${nifi::config_dir}/bootstrap-notification-services.xml":
@@ -12,6 +13,7 @@ class nifi::config {
     owner   => $nifi::nifi_user,
     group   => $nifi::nifi_group,
     content => file('nifi/config/bootstrap-notification-services.xml'),
+    require => File[ $nifi::config_dir ],
   }
 
   file { "${nifi::config_dir}/login-identity-providers.xml":
@@ -19,6 +21,7 @@ class nifi::config {
     owner   => $nifi::nifi_user,
     group   => $nifi::nifi_group,
     content => file('nifi/config/login-identity-providers.xml'),
+    require => File[ $nifi::config_dir ],
   }
 
   file { "${nifi::config_dir}/state-management.xml":
@@ -26,6 +29,7 @@ class nifi::config {
     owner   => $nifi::nifi_user,
     group   => $nifi::nifi_group,
     content => file('nifi/config/state-management.xml'),
+    require => File[ $nifi::config_dir ],
   }
 
   file { "${nifi::config_dir}/bootstrap.conf":
@@ -33,6 +37,7 @@ class nifi::config {
     owner   => $nifi::nifi_user,
     group   => $nifi::nifi_group,
     content => file('nifi/config/bootstrap.conf'),
+    require => File[ $nifi::config_dir ],
   }
 
   file { "${nifi::config_dir}/logback.xml":
@@ -40,6 +45,7 @@ class nifi::config {
     owner   => $nifi::nifi_user,
     group   => $nifi::nifi_group,
     content => file('nifi/config/logback.xml'),
+    require => File[ $nifi::config_dir ],
   }
 
   file { "${nifi::config_dir}/nifi.properties":
@@ -47,6 +53,7 @@ class nifi::config {
     owner   => $nifi::nifi_user,
     group   => $nifi::nifi_group,
     content => file('nifi/config/nifi.properties'),
+    require => File[ $nifi::config_dir ],
   }
 
   file { "${nifi::config_dir}/zookeeper.properties":
@@ -54,6 +61,7 @@ class nifi::config {
     owner   => $nifi::nifi_user,
     group   => $nifi::nifi_group,
     content => file('nifi/config/zookeeper.properties'),
+    require => File[ $nifi::config_dir ],
   }
 
 }
