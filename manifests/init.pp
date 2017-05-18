@@ -80,9 +80,3 @@ class nifi (
   anchor { '::nifi::end': }
 }
 
-
-
-
-
-
-}
