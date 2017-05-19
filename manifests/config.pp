@@ -52,7 +52,7 @@ class nifi::config {
     ensure  => file,
     owner   => $nifi::nifi_user,
     group   => $nifi::nifi_group,
-    content => templates('nifi/config/nifi.properties.erb'),
+    content => template('nifi/config/nifi.properties.erb'),
     require => File[ $nifi::config_dir ],
   }
 
