@@ -95,7 +95,7 @@ class nifi (
     require => Group[ $nifi_group ],
   }
 
-  $core_properties = $deep_merge($custom_core_properties, $default_core_properties)
+  $core_properties = deep_merge($custom_core_properties, $default_core_properties)
 
   anchor { '::nifi::start': } -> class { '::nifi::install': } -> class { '::nifi::config': } ~> class { '::nifi::service': } -> anchor { '::nifi::end': }
 }
