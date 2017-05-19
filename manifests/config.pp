@@ -64,4 +64,12 @@ class nifi::config {
     require => File[ $nifi::config_dir ],
   }
 
+  file { "${nifi::install_dir}/bin/nifi-env.sh":
+    ensure  => file,
+    owner   => $nifi::nifi_user,
+    group   => $nifi::nifi_group,
+    content => template('nifi/environment/nifi-env.sh.erb'),
+    require => File[ $nifi::install_dir ],
+  }
+
 }
