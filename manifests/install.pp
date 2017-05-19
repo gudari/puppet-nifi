@@ -25,7 +25,7 @@ class nifi::install {
   }
 
   if $nifi::package_name == undef {
-    include '::archive'
+    #    include '::archive'
 
     archive { "${nifi::download_dir}/${nifi::basefilename}":
       ensure          => present,

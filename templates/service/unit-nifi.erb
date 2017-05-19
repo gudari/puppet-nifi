@@ -7,8 +7,6 @@ Type=forking
 PermissionsStartOnly=true
 User=<%= scope.lookupvar('nifi::nifi_user') %>
 Group=<%= scope.lookupvar('nifi::nifi_group') %>
-Environment='NIFI_PID_DIR=<%= scope.lookupvar('nifi::pid_dir') %>'
-Environment='NIFI_LOG_DIR=<%= scope.lookupvar('nifi::log_dir') %>'
 Environment='BOOTSTRAP_CONF=<%= scope.lookupvar('nifi::config_dir') %>'
 ExecStartPre=/bin/mkdir -p <%= scope.lookupvar('nifi::pid_dir') %>
 ExecstartPre=/bin/chown -R <%= scope.lookupvar('nifi::nifi_user') %>:<%= scope.lookupvar('nifi::nifi_group') %> <%= scope.lookupvar('nifi::pid_dir') %>

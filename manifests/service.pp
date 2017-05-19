@@ -20,9 +20,7 @@ class nifi::service {
         ensure => absent,
       }
 
-      File["${nifi::service_name}.service"] ~>
-      Exec["systemctl-daemon-reload-${nifi::service_name}"] ->
-      Service[$nifi::service_name]
+      File["${nifi::service_name}.service"] ~> Exec["systemctl-daemon-reload-${nifi::service_name}"] -> Service[$nifi::service_name]
 
     } else {
 
