@@ -3,7 +3,7 @@ Description= Apache Nifi
 Documentation=http://nifi.apache.org
 
 [Service]
-Type=simple
+Type=forking
 PermissionsStartOnly=true
 User=<%= scope.lookupvar('nifi::nifi_user') %>
 Group=<%= scope.lookupvar('nifi::nifi_group') %>
@@ -13,7 +13,9 @@ Environment='BOOTSTRAP_CONF=<%= scope.lookupvar('nifi::config_dir') %>'
 ExecStartPre=/bin/mkdir -p <%= scope.lookupvar('nifi::pid_dir') %>
 ExecstartPre=/bin/chown -R <%= scope.lookupvar('nifi::nifi_user') %>:<%= scope.lookupvar('nifi::nifi_group') %> <%= scope.lookupvar('nifi::pid_dir') %>
 SyslogIdentifier=<%= scope.lookupvar('nifi::service_name') %>
-ExecStart=<%= scope.lookupvar('nifi::install_dir') %>/bin/nifi.sh run
+ExecStart=<%= scope.lookupvar('nifi::install_dir') %>/bin/nifi.sh start
+ExecStop=<%= scope.lookupvar('nifi::install_dir') %>/bin/nifi.sh stop
+ExecRestart=<%= scope.lookupvar('nifi::install_dir') %>/bin/nifi restart
 PIDFile=<%= scope.lookupvar('nifi::pid_dir') %>/nifi.pid
 
 LimitNOFILE=65536
