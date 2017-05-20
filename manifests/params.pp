@@ -25,10 +25,10 @@ class nifi::params {
     'nifi.flow.configuration.archive.enabled'         => true,
     'nifi.flow.configuration.archive.dir'             => './conf/archive/',
     'nifi.flow.configuration.archive.max.time'        => '30 days',
-    'nifi.flow.configuration.archive.storage'         => '500 MB',
+    'nifi.flow.configuration.archive.max.storage'     => '500 MB',
     'nifi.flowcontroller.autoResumeState'             => true,
     'nifi.flowcontroller.graceful.shutdown.period'    => '10 sec',
-    'nifi.flowservice.writedelay.internal'            => '500 MB',
+    'nifi.flowservice.writedelay.interval'            => '500 MB',
     'nifi.administrative.yield.duration'              => '30 sec',
     'nifi.bored.yield.duration'                       => '10 millis',
     'nifi.authorizer.configuration.file'              => './conf/authorizers.xml',
@@ -36,7 +36,8 @@ class nifi::params {
     'nifi.templates.directory'                        => './conf/templates',
     'nifi.ui.autorefresh.interval'                    => '30 sec',
     'nifi.nar.library.directory'                      => './lib',
-    'nifi.nar.working.directory'                      => './work/docs/components',
+    'nifi.nar.working.directory'                      => './work/nar/',
+    'nifi.documentation.working.directory'            => './work/docs/components',
   }
 }
 
