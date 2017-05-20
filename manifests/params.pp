@@ -120,7 +120,7 @@ class nifi::params {
     'nifi.sensitive.props.algorithm' => 'PBEWITHMD5AND256BITAES-CBC-OPENSSL',
     'nifi.sensitive.props.provider'  => 'BC',
     'nifi.security.user.authorizer'  => 'file-provider',
-  },
+  }
 
   $default_cluster_properties = {
     'nifi.cluster.protocol.heartbeat.interval' => '5 sec',
