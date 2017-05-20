@@ -24,41 +24,23 @@
 <% end -%>
 <% end -%>
 
-# Core Properties #
-#nifi.flow.configuration.file=./conf/flow.xml.gz
-#nifi.flow.configuration.archive.enabled=true
-#nifi.flow.configuration.archive.dir=./conf/archive/
-#nifi.flow.configuration.archive.max.time=30 days
-#nifi.flow.configuration.archive.max.storage=500 MB
-#nifi.flow.configuration.archive.max.count=
-#nifi.flowcontroller.autoResumeState=true
-#nifi.flowcontroller.graceful.shutdown.period=10 sec
-#nifi.flowservice.writedelay.interval=500 ms
-#nifi.administrative.yield.duration=30 sec
-# If a component has no work to do (is "bored"), how long should we wait before checking again for work?
-#nifi.bored.yield.duration=10 millis
-
-#nifi.authorizer.configuration.file=./conf/authorizers.xml
-#nifi.login.identity.provider.configuration.file=./conf/login-identity-providers.xml
-#nifi.templates.directory=./conf/templates
-#nifi.ui.banner.text=
-#nifi.ui.autorefresh.interval=30 sec
-#nifi.nar.library.directory=./lib
-#nifi.nar.working.directory=./work/nar/
-#nifi.documentation.working.directory=./work/docs/components
-
 ####################
 # State Management #
 ####################
-nifi.state.management.configuration.file=./conf/state-management.xml
+<% scope.lookupvar('nifi::stage_management').sort.map do |k,v| -%>
+<% unless v.to_s.strip.empty? -%>
+<%= k %>=<%= v.is_a?(Array) ? v.join(',') : v %>
+<% end -%>
+<% end -%>
+#nifi.state.management.configuration.file=./conf/state-management.xml
 # The ID of the local state provider
-nifi.state.management.provider.local=local-provider
+#nifi.state.management.provider.local=local-provider
 # The ID of the cluster-wide state provider. This will be ignored if NiFi is not clustered but must be populated if running in a cluster.
-nifi.state.management.provider.cluster=zk-provider
+#nifi.state.management.provider.cluster=zk-provider
 # Specifies whether or not this instance of NiFi should run an embedded ZooKeeper server
-nifi.state.management.embedded.zookeeper.start=false
+#nifi.state.management.embedded.zookeeper.start=false
 # Properties file that provides the ZooKeeper properties to use if <nifi.state.management.embedded.zookeeper.start> is set to true
-nifi.state.management.embedded.zookeeper.properties=./conf/zookeeper.properties
+#nifi.state.management.embedded.zookeeper.properties=./conf/zookeeper.properties
 
 
 # H2 Settings

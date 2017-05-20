@@ -57,7 +57,7 @@ class nifi (
 
   $config_dir                 = "${install_dir}/conf",
   $custom_core_properties     = {},
-  $custom_stage_mangement     = {},
+  $custom_stage_management    = {},
   $custom_h2_settings         = {},
   $custom_flowfile_repo       = {},
   $custom_content_repo        = {},
@@ -95,7 +95,8 @@ class nifi (
     require => Group[ $nifi_group ],
   }
 
-  $core_properties = deep_merge($custom_core_properties, $default_core_properties)
+  $core_properties  = deep_merge($custom_core_properties, $default_core_properties)
+  $stage_management = deep_merge($custom_stage_management, $default_stage_management)
 
   anchor { '::nifi::start': } -> class { '::nifi::install': } -> class { '::nifi::config': } ~> class { '::nifi::service': } -> anchor { '::nifi::end': }
 }

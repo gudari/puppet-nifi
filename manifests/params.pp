@@ -39,5 +39,13 @@ class nifi::params {
     'nifi.nar.working.directory'                      => './work/nar/',
     'nifi.documentation.working.directory'            => './work/docs/components',
   }
+
+  custom_stage_management = {
+    'nifi.state.management.configuration.file'       => './conf/state-management.xml',
+    'nifi.state.management.provider.local'           => 'local-provider',
+    'nifi.state.management.provider.cluster'         => 'zk-provider',
+    'nifi.state.management.embedded.zookeeper.start' => false,
+  }
+
 }
 
