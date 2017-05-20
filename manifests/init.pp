@@ -97,6 +97,7 @@ class nifi (
 
   $core_properties  = deep_merge($custom_core_properties, $default_core_properties)
   $stage_management = deep_merge($custom_stage_management, $default_stage_management)
+  $h2_stettings     = deep_merge($custom_h2_settings, $default_h2_settings)
 
   anchor { '::nifi::start': } -> class { '::nifi::install': } -> class { '::nifi::config': } ~> class { '::nifi::service': } -> anchor { '::nifi::end': }
 }
