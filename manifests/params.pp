@@ -40,11 +40,16 @@ class nifi::params {
     'nifi.documentation.working.directory'            => './work/docs/components',
   }
 
-  custom_stage_management = {
+  $default_stage_management = {
     'nifi.state.management.configuration.file'       => './conf/state-management.xml',
     'nifi.state.management.provider.local'           => 'local-provider',
     'nifi.state.management.provider.cluster'         => 'zk-provider',
     'nifi.state.management.embedded.zookeeper.start' => false,
+  }
+
+  $default_h2_settings = {
+    'nifi.database.directory' => './database_repository',
+    'nifi.h2.url.append'      => ';LOCK_TIMEOUT=25000;WRITE_DELAY=0;AUTO_SERVER=FALSE',
   }
 
 }

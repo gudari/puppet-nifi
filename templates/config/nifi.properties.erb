@@ -44,8 +44,13 @@
 
 
 # H2 Settings
-nifi.database.directory=./database_repository
-nifi.h2.url.append=;LOCK_TIMEOUT=25000;WRITE_DELAY=0;AUTO_SERVER=FALSE
+<% scope.lookupvar('nifi::h2_settings').sort.map do |k,v| -%>
+<% unless v.to_s.strip.empty? -%>
+<%= k %>=<%= v.is_a?(Array) ? v.join(',') : v %>
+<% end -%>
+<% end -%>
+#nifi.database.directory=./database_repository
+#nifi.h2.url.append=;LOCK_TIMEOUT=25000;WRITE_DELAY=0;AUTO_SERVER=FALSE
 
 # FlowFile Repository
 nifi.flowfile.repository.implementation=org.apache.nifi.controller.repository.WriteAheadFlowFileRepository
