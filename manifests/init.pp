@@ -96,19 +96,19 @@ class nifi (
     require => Group[ $nifi_group ],
   }
 
-  $core_properties     = deep_merge($custom_core_properties, $nifi::params::default_core_properties)
-  $stage_management    = deep_merge($custom_stage_management, $nifi::params::default_stage_management)
-  $h2_settings         = deep_merge($custom_h2_settings, $nifi::params::default_h2_settings)
-  $flowfile_repo       = deep_merge($custom_flowfile_repo, $nifi::params::default_flowfile_repo)
-  $content_repo        = deep_merge($custom_content_repo, $nifi::params::default_content_repo)
-  $provenance_repo     = deep_merge($custom_provenance_repo, $nifi::params::default_provenance_repo)
-  $components_repo     = deep_merge($custom_components_repo,$nifi::params::default_content_repo)
-  $site_to_site        = deep_merge($custom_siste_to_site, $nifi::params::default_siste_to_site)
-  $web_properties      = deep_merge($custom_web_properties, $nifi::params::default_web_properties)
-  $security_properties = deep_merge($custom_security_properties, $nifi::params::default_security_properties)
-  $cluster_properties  = deep_merge($custom_cluster_properties, $nifi::params::default_cluster_properties)
-  $zookeeper           = deep_merge($custom_zookeeper, $nifi::params::default_zookeeper)
-  $kerberos            = deep_merge($custom_kerberos, $nifi::params::default_kerberos)
+  $core_properties     = deep_merge($nifi::params::default_core_properties, $custom_core_properties)
+  $stage_management    = deep_merge($nifi::params::default_stage_management, $custom_stage_management)
+  $h2_settings         = deep_merge($nifi::params::default_h2_settings, $custom_h2_settings)
+  $flowfile_repo       = deep_merge($nifi::params::default_flowfile_repo, $custom_flowfile_repo)
+  $content_repo        = deep_merge($nifi::params::default_content_repo, $custom_content_repo)
+  $provenance_repo     = deep_merge($nifi::params::default_provenance_repo, $custom_provenance_repo)
+  $components_repo     = deep_merge($nifi::params::default_content_repo, $custom_components_repo)
+  $site_to_site        = deep_merge($nifi::params::default_siste_to_site, $custom_siste_to_site)
+  $web_properties      = deep_merge($nifi::params::default_web_properties, $custom_web_properties)
+  $security_properties = deep_merge($nifi::params::default_security_properties, $custom_security_properties)
+  $cluster_properties  = deep_merge($nifi::params::default_cluster_properties, $custom_cluster_properties)
+  $zookeeper           = deep_merge($nifi::params::default_zookeeper, $custom_zookeeper)
+  $kerberos            = deep_merge($nifi::params::default_kerberos, $custom_kerberos)
 
   anchor { '::nifi::start': } -> class { '::nifi::install': } -> class { '::nifi::config': } ~> class { '::nifi::service': } -> anchor { '::nifi::end': }
 }
