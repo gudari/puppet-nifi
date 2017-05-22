@@ -40,7 +40,7 @@ class nifi::params {
     'nifi.documentation.working.directory'            => './work/docs/components',
   }
 
-  $default_stage_management = {
+  $default_state_management = {
     'nifi.state.management.configuration.file'       => './conf/state-management.xml',
     'nifi.state.management.provider.local'           => 'local-provider',
     'nifi.state.management.provider.cluster'         => 'zk-provider',
@@ -143,7 +143,7 @@ class nifi::params {
     'nifi.kerberos.spnego.authentication.expiration' => '12 hours',
   }
 
-  $default_stage_management_file = {
+  $default_state_management_file = {
     'local-provider' => {
       'id'       => 'local-provider',
       'class'    => 'org.apache.nifi.controller.stage.providers.local.WriteAheadLocalStateProvider',

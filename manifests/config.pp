@@ -28,7 +28,7 @@ class nifi::config {
     ensure  => file,
     owner   => $nifi::nifi_user,
     group   => $nifi::nifi_group,
-    content => file('nifi/config/state-management.xml'),
+    content => template('nifi/config/state-management.xml.erb'),
     require => File[ $nifi::config_dir ],
   }
 
