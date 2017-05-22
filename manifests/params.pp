@@ -143,5 +143,27 @@ class nifi::params {
     'nifi.kerberos.spnego.authentication.expiration' => '12 hours',
   }
 
+  $default_stage_management_file = {
+    'local-provider' => {
+      'id'       => 'local-provider',
+      'class'    => 'org.apache.nifi.controller.stage.providers.local.WriteAheadLocalStateProvider',
+      'property' => {
+        'Directory'           => './state/local',
+        'Always Sync'         => false,
+        'Partitions'          => 16,
+        'Checkpoint Interval' => '2 mins',
+      },
+    },
+    'zk-provider'    => {
+      'id'       => 'zk-provider',
+      'class'    => 'org.apache.nifi.controller.state.providers.zookeeper.ZooKeeperStateProvider',
+      'property' => {
+        'Connect String'  => ' ',
+        'Root Node'       => '/nifi',
+        'Session Timeout' => '10 seconds',
+        'Access Control'  => 'Open',
+      },
+    },
+  }
 }
 

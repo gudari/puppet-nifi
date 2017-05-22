@@ -69,6 +69,7 @@ class nifi (
   $custom_cluster_properties  = {},
   $custom_zookeeper           = {},
   $custom_kerberos            = {},
+  $custom_stage_management_file = {},
 
   $service_install            = $nifi::params::service_install,
   $service_name               = $nifi::params::service_name,
@@ -109,6 +110,7 @@ class nifi (
   $cluster_properties  = deep_merge($nifi::params::default_cluster_properties, $custom_cluster_properties)
   $zookeeper           = deep_merge($nifi::params::default_zookeeper, $custom_zookeeper)
   $kerberos            = deep_merge($nifi::params::default_kerberos, $custom_kerberos)
+  $stage_management_file = deep_merge($nifi::params::default_stage_management_file, $custom_stage_management_file)
 
   anchor { '::nifi::start': } -> class { '::nifi::install': } -> class { '::nifi::config': } ~> class { '::nifi::service': } -> anchor { '::nifi::end': }
 }
