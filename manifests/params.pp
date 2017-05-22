@@ -28,7 +28,7 @@ class nifi::params {
     'nifi.flow.configuration.archive.max.storage'     => '500 MB',
     'nifi.flowcontroller.autoResumeState'             => true,
     'nifi.flowcontroller.graceful.shutdown.period'    => '10 sec',
-    'nifi.flowservice.writedelay.interval'            => '500 MB',
+    'nifi.flowservice.writedelay.interval'            => '500 ms',
     'nifi.administrative.yield.duration'              => '30 sec',
     'nifi.bored.yield.duration'                       => '10 millis',
     'nifi.authorizer.configuration.file'              => './conf/authorizers.xml',
