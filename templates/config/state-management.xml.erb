@@ -66,8 +66,8 @@
 <% scope.lookupvar('nifi::state_management_file').sort.map do |k,v| -%>
   <<%= k -%>>
     <% v.sort.map do |vk,vv| -%>
-      <% case vk -%>
-      <% when "id" -%>
+      <% case vk
+         when "id" -%>
     <id><%= vv %></id>
       <% when "class" -%>
     <class><%= vv %></class>
