@@ -146,7 +146,7 @@ class nifi::params {
   $default_state_management_file = {
     'local-provider' => {
       'id'       => 'local-provider',
-      'class'    => 'org.apache.nifi.controller.stage.providers.local.WriteAheadLocalStateProvider',
+      'class'    => 'org.apache.nifi.controller.state.providers.local.WriteAheadLocalStateProvider',
       'property' => {
         'Directory'           => './state/local',
         'Always Sync'         => false,
