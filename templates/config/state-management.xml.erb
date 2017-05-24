@@ -35,8 +35,8 @@ when 'local-provider'-%>
         Checkpoint Interval - The amount of time between checkpoints.
      -->
     <local-provider>
-        <id><% if config.has_key?('id') -%><%= config['id'] -%><% else raise Puppet::Error "you need to provide the local-provider id." end -%></id>
-	<class><% if config.has_key?('class') -%><%= config['class'] -%><% else raise Puppet::Error "you have to provide the local-provieder class." end -%></class>
+        <id><% if config.has_key?('id') -%><%= config['id'] -%><% end -%></id>
+	<class><% if config.has_key?('class') -%><%= config['class'] -%><% end -%></class>
 <% if config.has_key?('property')
 config['property'].sort.map do |name, value| -%>
 	<property name="<%= name -%>"><%= value -%></property>
@@ -60,14 +60,14 @@ end -%>
                                              This option is available only if access to ZooKeeper is secured via Kerberos or if a Username and Password are set.
     -->
     <cluster-provider>
-	<id><% if config.has_key?('id') -%><%= config['id'] -%><% else raise Puppet::Error "You need to provide the cluster-provider id." end -%></id>
-	<class><% if config.has_key?('class') -%><%= config['class'] -%><% else raise Puppet::Error "you have to provide the cluster-provider class" end -%></class>
+	<id><% if config.has_key?('id') -%><%= config['id'] -%><% end -%></id>
+	<class><% if config.has_key?('class') -%><%= config['class'] -%><% end -%></class>
 <% if config.has_key?('property')
 config['property'].sort.map do |name, value| -%>
 	<property name="<%= name -%>"><%= value -%></property>
-<% end
-else raise Puppet::Error "You need to provide cluster-provider properties" end -%>
+<% end -%>
     </cluster-provider>
-<% else raise Puppet::Error "The ${provider} doesn't exist, try with local-provider or cluster-provider." end
+<% end
+end 
 end -%>
 </stateManagement>
