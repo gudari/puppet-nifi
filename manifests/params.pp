@@ -154,7 +154,7 @@ class nifi::params {
         'Checkpoint Interval' => '2 mins',
       },
     },
-    'zk-provider'    => {
+    'cluster-provider'    => {
       'id'       => 'zk-provider',
       'class'    => 'org.apache.nifi.controller.state.providers.zookeeper.ZooKeeperStateProvider',
       'property' => {
