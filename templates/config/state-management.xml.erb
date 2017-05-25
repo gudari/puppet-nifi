@@ -20,7 +20,7 @@
   must be specified in the nifi.properties file.
 -->
 <stateManagement>
-<% scope.lookupvar('nifi::state_management_file').sort.map do |provider, config| -%>
+<% scope.lookupvar('nifi::state_management').sort.map do |provider, config| -%>
 <% case provider
 when 'local-provider'-%>
  <!--

@@ -20,7 +20,9 @@ class nifi::params {
   $package_name    = undef
   $package_ensure  = installed
 
-  $default_core_properties = {
+  $default_properties = {
+
+    # Core Properties #
     'nifi.flow.configuration.file'                    => './conf/flow.xml.gz',
     'nifi.flow.configuration.archive.enabled'         => true,
     'nifi.flow.configuration.archive.dir'             => './conf/archive/',
@@ -38,21 +40,18 @@ class nifi::params {
     'nifi.nar.library.directory'                      => './lib',
     'nifi.nar.working.directory'                      => './work/nar/',
     'nifi.documentation.working.directory'            => './work/docs/components',
-  }
 
-  $default_state_management = {
+    # State Management #
     'nifi.state.management.configuration.file'       => './conf/state-management.xml',
     'nifi.state.management.provider.local'           => 'local-provider',
     'nifi.state.management.provider.cluster'         => 'zk-provider',
     'nifi.state.management.embedded.zookeeper.start' => false,
-  }
 
-  $default_h2_settings = {
+    # H2 Settings #
     'nifi.database.directory' => './database_repository',
     'nifi.h2.url.append'      => ';LOCK_TIMEOUT=25000;WRITE_DELAY=0;AUTO_SERVER=FALSE',
-  }
 
-  $default_flowfile_repo = {
+    # FlowFile Repository #
     'nifi.flowfile.repository.implementation'      => 'org.apache.nifi.controller.repository.WriteAheadFlowFileRepository',
     'nifi.flowfile.repository.directory'           => './flowfile_repository',
     'nifi.flowfile.repository.partitions'          => 256,
@@ -64,9 +63,8 @@ class nifi::params {
     'nifi.swap.in.threads'                         => 1,
     'nifi.swap.out.period'                         => '5 sec',
     'nifi.swap.out.threads'                        => 4,
-  }
 
-  $default_content_repo = {
+    # Content Repository # 
     'nifi.content.repository.implementation'               => 'org.apache.nifi.controller.repository.FileSystemRepository',
     'nifi.content.claim.max.appendable.size'               => '10 MB',
     'nifi.content.claim.max.flow.files'                    => 100,
@@ -76,9 +74,8 @@ class nifi::params {
     'nifi.content.repository.archive.enabled'              => true,
     'nifi.content.repository.always.sync'                  => false,
     'nifi.content.viewer.url'                              => '/nifi-content-viewer/',
-  }
 
-  $default_provenance_repo = {
+    # Provenance Repository Properties #
     'nifi.provenance.repository.implementation'       => 'org.apache.nifi.provenance.PersistentProvenanceRepository',
     'nifi.provenance.repository.debug.frequency'      => '1_000_000',
     'nifi.provenance.repository.directory.default'    => './provenance_repository',
@@ -95,34 +92,29 @@ class nifi::params {
     'nifi.provenance.repository.index.shard.size'     => '500 MB',
     'nifi.provenance.repository.max.attribute.length' => 65536,
     'nifi.provenance.repository.buffer.size'          => 100000,
-  }
 
-  $default_components_repo = {
+    # Component Status repository #
     'nifi.components.status.repository.implementation' => 'org.apache.nifi.controller.status.history.VolatileComponentStatusRepository',
     'nifi.components.status.repository.buffer.size'    => 1440,
     'nifi.components.status.snapshot.frequency'        => '1 min',
-  }
 
-  $default_siste_to_site = {
+    # Site to Site properties #
     'nifi.remote.input.secure'               => false,
     'nifi.remote.input.http.enabled'         => true,
     'nifi.remote.input.http.transaction.ttl' => '30 sec',
-  }
 
-  $default_web_properties = {
+    # web properties #
     'nifi.web.war.directory'           => './lib',
     'nifi.web.http.port'               => 8080,
     'nifi.web.jetty.working.directory' => './work/jetty',
     'nifi.web.jetty.threads'           => 200,
-  }
-
-  $default_security_properties = {
+    
+    # security properties #
     'nifi.sensitive.props.algorithm' => 'PBEWITHMD5AND256BITAES-CBC-OPENSSL',
     'nifi.sensitive.props.provider'  => 'BC',
     'nifi.security.user.authorizer'  => 'file-provider',
-  }
 
-  $default_cluster_properties = {
+    # cluster node properties (only configure for cluster nodes) #
     'nifi.cluster.protocol.heartbeat.interval' => '5 sec',
     'nifi.cluster.protocol.is.secure'          => false,
     'nifi.cluster.is.node'                     => false,
@@ -131,19 +123,17 @@ class nifi::params {
     'nifi.cluster.node.connection.timeout'     => '5 sec',
     'nifi.cluster.node.read.timeout'           => '5 sec',
     'nifi.cluster.flow.election.max.wait.time' => '5 mins',
-  }
 
-  $default_zookeeper = {
+    # zookeeper properties, used for cluster management #
     'nifi.zookeeper.connect.timeout' => '3 secs',
     'nifi.zookeeper.session.timeout' => '3 secs',
     'nifi.zookeeper.root.node'       => '/nifi',
-  }
 
-  $default_kerberos = {
+    # kerberos 
     'nifi.kerberos.spnego.authentication.expiration' => '12 hours',
   }
 
-  $default_state_management_file = {
+  $default_state_management = {
     'local-provider' => {
       'id'       => 'local-provider',
       'class'    => 'org.apache.nifi.controller.state.providers.local.WriteAheadLocalStateProvider',
