@@ -36,7 +36,7 @@ class nifi::config {
     ensure  => file,
     owner   => $nifi::nifi_user,
     group   => $nifi::nifi_group,
-    content => file('nifi/config/bootstrap.conf'),
+    content => template('nifi/config/bootstrap.conf.erb'),
     require => File[ $nifi::config_dir ],
   }
 

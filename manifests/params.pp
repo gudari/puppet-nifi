@@ -20,6 +20,20 @@ class nifi::params {
   $package_name    = undef
   $package_ensure  = installed
 
+  $default_bootstrap = {
+    'graceful.shutdown.seconds' => 20,
+    'java.arg.1'                => '-Dorg.apache.jasper.compiler.disablejsr199=true',
+    'java.arg.2'                => '-Xms512m',
+    'java.arg.3'                => '-Xmx512m',
+    'java.arg.4'                => '-Djava.net.preferIPv4Stack=true',
+    'java.arg.5'                => '-Dsun.net.http.allowRestrictedHeaders=true',
+    'java.arg.6'                => '-Djava.protocol.handler.pkgs=sun.net.www.protocol',
+    'java.arg.13'               => '-XX:+UseG1GC',
+    'java.arg.14'               => '-Djava.awt.headless=true',
+    'java.arg.15'               => '-Djava.security.egd=file:/dev/urandom',
+    'notification.max.attempts' => 5,
+  }
+
   $default_properties = {
 
     # Core Properties #
