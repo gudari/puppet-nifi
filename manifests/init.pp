@@ -60,7 +60,7 @@ class nifi (
   $custom_properties       = {},
   $custom_state_management = {},
   $custom_authorizers      = {},
-  $custom_bootstrap        = $nifi::params::java_args,
+  $custom_bootstrap        = {},
 
 
   $service_install            = $nifi::params::service_install,
