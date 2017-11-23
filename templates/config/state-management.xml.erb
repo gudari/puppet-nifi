@@ -20,7 +20,10 @@
   must be specified in the nifi.properties file.
 -->
 <stateManagement>
-    <!--
+<% scope.lookupvar('nifi::state_management').sort.map do |provider, config| -%>
+<% case provider
+when 'local-provider'-%>
+ <!--
         State Provider that stores state locally in a configurable directory. This Provider requires the following properties:
         
         Directory - the directory to store components' state in. If the directory being used is a sub-directory of the NiFi installation, it
@@ -32,14 +35,15 @@
         Checkpoint Interval - The amount of time between checkpoints.
      -->
     <local-provider>
-        <id>local-provider</id>
-        <class>org.apache.nifi.controller.state.providers.local.WriteAheadLocalStateProvider</class>
-        <property name="Directory">./state/local</property>
-        <property name="Always Sync">false</property>
-        <property name="Partitions">16</property>
-        <property name="Checkpoint Interval">2 mins</property>
+        <id><% if config.has_key?('id') -%><%= config['id'] -%><% end -%></id>
+	<class><% if config.has_key?('class') -%><%= config['class'] -%><% end -%></class>
+<% if config.has_key?('property')
+config['property'].sort.map do |name, value| -%>
+	<property name="<%= name -%>"><%= value -%></property>
+<% end
+end -%>
     </local-provider>
-
+<% when 'cluster-provider' -%>
     <!--
         State Provider that is used to store state in ZooKeeper. This Provider requires the following properties:
         
@@ -56,11 +60,14 @@
                                              This option is available only if access to ZooKeeper is secured via Kerberos or if a Username and Password are set.
     -->
     <cluster-provider>
-        <id>zk-provider</id>
-        <class>org.apache.nifi.controller.state.providers.zookeeper.ZooKeeperStateProvider</class>
-        <property name="Connect String"></property>
-        <property name="Root Node">/nifi</property>
-        <property name="Session Timeout">10 seconds</property>
-        <property name="Access Control">Open</property>
+	<id><% if config.has_key?('id') -%><%= config['id'] -%><% end -%></id>
+	<class><% if config.has_key?('class') -%><%= config['class'] -%><% end -%></class>
+<% if config.has_key?('property')
+config['property'].sort.map do |name, value| -%>
+	<property name="<%= name -%>"><%= value -%></property>
+<% end -%>
     </cluster-provider>
+<% end
+end 
+end -%>
 </stateManagement>

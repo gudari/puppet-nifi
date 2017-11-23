@@ -56,19 +56,12 @@ class nifi (
   $pid_dir                    = $nifi::params::pid_dir,
 
   $config_dir                 = "${install_dir}/conf",
-  $custom_core_properties     = {},
-  $custom_stage_management    = {},
-  $custom_h2_settings         = {},
-  $custom_flowfile_repo       = {},
-  $custom_content_repo        = {},
-  $custom_provenance_repo     = {},
-  $custom_components_repo     = {},
-  $custom_siste_to_site       = {},
-  $custom_web_properties      = {},
-  $custom_security_properties = {},
-  $custom_cluster_properties  = {},
-  $custom_zookeeper           = {},
-  $custom_kerberos            = {},
+
+  $custom_properties       = {},
+  $custom_state_management = {},
+  $custom_authorizers      = {},
+  $custom_bootstrap        = {},
+
 
   $service_install            = $nifi::params::service_install,
   $service_name               = $nifi::params::service_name,
@@ -96,19 +89,9 @@ class nifi (
     require => Group[ $nifi_group ],
   }
 
-  $core_properties     = deep_merge($nifi::params::default_core_properties, $custom_core_properties)
-  $stage_management    = deep_merge($nifi::params::default_stage_management, $custom_stage_management)
-  $h2_settings         = deep_merge($nifi::params::default_h2_settings, $custom_h2_settings)
-  $flowfile_repo       = deep_merge($nifi::params::default_flowfile_repo, $custom_flowfile_repo)
-  $content_repo        = deep_merge($nifi::params::default_content_repo, $custom_content_repo)
-  $provenance_repo     = deep_merge($nifi::params::default_provenance_repo, $custom_provenance_repo)
-  $components_repo     = deep_merge($nifi::params::default_content_repo, $custom_components_repo)
-  $site_to_site        = deep_merge($nifi::params::default_siste_to_site, $custom_siste_to_site)
-  $web_properties      = deep_merge($nifi::params::default_web_properties, $custom_web_properties)
-  $security_properties = deep_merge($nifi::params::default_security_properties, $custom_security_properties)
-  $cluster_properties  = deep_merge($nifi::params::default_cluster_properties, $custom_cluster_properties)
-  $zookeeper           = deep_merge($nifi::params::default_zookeeper, $custom_zookeeper)
-  $kerberos            = deep_merge($nifi::params::default_kerberos, $custom_kerberos)
+  $properties       = deep_merge($nifi::params::default_properties, $custom_properties)
+  $state_management = deep_merge($nifi::params::default_state_management, $custom_state_management)
+  $bootstrap        = deep_merge($nifi::params::default_bootstrap, $custom_bootstrap)
 
   anchor { '::nifi::start': } -> class { '::nifi::install': } -> class { '::nifi::config': } ~> class { '::nifi::service': } -> anchor { '::nifi::end': }
 }
