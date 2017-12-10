@@ -92,6 +92,7 @@ class nifi (
   $properties       = deep_merge($nifi::params::default_properties, $custom_properties)
   $state_management = deep_merge($nifi::params::default_state_management, $custom_state_management)
   $bootstrap        = deep_merge($nifi::params::default_bootstrap, $custom_bootstrap)
+  $authorizers      = deep_merge($nifi::params::authorizers, $custom_authorizers)
 
   anchor { '::nifi::start': } -> class { '::nifi::install': } -> class { '::nifi::config': } ~> class { '::nifi::service': } -> anchor { '::nifi::end': }
 }

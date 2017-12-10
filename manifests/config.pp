@@ -4,7 +4,7 @@ class nifi::config {
     ensure  => file,
     owner   => $nifi::nifi_user,
     group   => $nifi::nifi_group,
-    content => file('nifi/config/authorizers.xml'),
+    content => template('nifi/config/authorizers.xml.erb'),
     require => File[ $nifi::config_dir ],
   }
 
@@ -53,14 +53,6 @@ class nifi::config {
     owner   => $nifi::nifi_user,
     group   => $nifi::nifi_group,
     content => template('nifi/config/nifi.properties.erb'),
-    require => File[ $nifi::config_dir ],
-  }
-
-  file { "${nifi::config_dir}/zookeeper.properties":
-    ensure  => file,
-    owner   => $nifi::nifi_user,
-    group   => $nifi::nifi_group,
-    content => file('nifi/config/zookeeper.properties'),
     require => File[ $nifi::config_dir ],
   }
 

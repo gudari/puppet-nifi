@@ -169,5 +169,17 @@ class nifi::params {
       },
     },
   }
+
+  $authorizers = {
+    'file-provider' => {
+      'class'    => 'org.apache.nifi.authorization.FileAuthorizer',
+      'property' => {
+        'Authorizations File'          => './conf/authorizations.xml',
+        'Users File'                   => './conf/users.xml',
+        'Initial Admin Identity'       => '',
+        'Legacy Authorized Users File' => '',
+      },
+    },
+  }
 }
 
