@@ -25,7 +25,7 @@ run.as=
 lib.dir=<%= scope.lookupvar('nifi::install_dir') %>/lib
 conf.dir=<%= scope.lookupvar('nifi::config_dir') %>
 
-<% scope.lookupvar('nifi::bootstrap') do |key, value| -%>
+<% scope.lookupvar('nifi::bootstrap').map do |key, value| -%>
 <%= key -%>=<%= value %>
 <% end -%>
 
